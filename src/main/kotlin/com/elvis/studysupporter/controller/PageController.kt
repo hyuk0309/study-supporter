@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("/")
-class HomeController {
+class PageController {
 
-    @GetMapping
-    fun home(): String = "home"
+    @GetMapping("/")
+    fun home() = "home"
+
+    @GetMapping("/select")
+    fun select() = "select"
 }
