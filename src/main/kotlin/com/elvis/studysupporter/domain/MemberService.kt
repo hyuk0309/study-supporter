@@ -1,6 +1,6 @@
 package com.elvis.studysupporter.domain
 
-import com.elvis.studysupporter.domain.dto.MemberDto
+import com.elvis.studysupporter.domain.dto.MemberResult
 import com.elvis.studysupporter.infrastructure.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -12,10 +12,10 @@ class MemberService(
 ) {
     fun createMember(nickname: String) = memberRepository.save(Member(nickname))
 
-    fun findMembers(): List<MemberDto> {
+    fun findMembers(): List<MemberResult> {
         val members = memberRepository.findAll()
 
         return members
-            .map { member -> MemberDto(member.id!!, member.nickname) }
+            .map { member -> MemberResult(member.id!!, member.nickname) }
     }
 }
