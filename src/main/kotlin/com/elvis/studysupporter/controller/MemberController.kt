@@ -13,8 +13,9 @@ class MemberController(
     private val memberService: MemberService
 ) {
     @PostMapping
-    fun addMember(@RequestBody addMemberRequest: AddMemberRequest) {
+    fun addMember(@RequestBody addMemberRequest: AddMemberRequest): ResponseEntity<Unit> {
         memberService.createMember(addMemberRequest.nickname)
+        return ResponseEntity.ok().build()
     }
 
     @GetMapping
