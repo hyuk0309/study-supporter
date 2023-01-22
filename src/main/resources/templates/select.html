@@ -119,14 +119,15 @@
             data: JSON.stringify({
                 nickname: $('#nickname').val()
             }),
-            success: function (data) {
+            success: function () {
                 // Ajax call completed successfully
-                console.log(data)
+                $('#addMemberModal').modal('hide');
                 alert("Form Submited Successfully");
+                location.reload();
             },
             error: function (data) {
                 // Some error in ajax call
-                console.log(data)
+                console.log(data);
                 alert("some Error");
             }
         });
