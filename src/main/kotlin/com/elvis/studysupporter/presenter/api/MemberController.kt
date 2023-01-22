@@ -1,7 +1,7 @@
-package com.elvis.studysupporter.controller
+package com.elvis.studysupporter.presenter.api
 
-import com.elvis.studysupporter.controller.dto.AddMemberRequest
-import com.elvis.studysupporter.controller.dto.MembersResponse
+import com.elvis.studysupporter.presenter.api.dto.AddMemberRequest
+import com.elvis.studysupporter.presenter.api.dto.MembersResponse
 import com.elvis.studysupporter.domain.MemberService
 import com.elvis.studysupporter.domain.dto.MemberResult
 import org.springframework.http.ResponseEntity

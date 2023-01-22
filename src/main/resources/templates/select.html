@@ -27,23 +27,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Bob</td>
+            <tr th:each="member : ${members}">
+                <th scope="row" th:text="${member.id}">1</th>
+                <td th:text="${member.nickname}">Mark</td>
                 <td>
                     <button type="button" class="btn btn-danger">Remove</button>
                 </td>

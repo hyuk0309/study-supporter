@@ -1,6 +1,6 @@
 package com.elvis.studysupporter.integration
 
-import com.elvis.studysupporter.controller.dto.AddMemberRequest
+import com.elvis.studysupporter.presenter.api.dto.AddMemberRequest
 import com.elvis.studysupporter.infrastructure.MemberRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.kotest.core.spec.style.BehaviorSpec
