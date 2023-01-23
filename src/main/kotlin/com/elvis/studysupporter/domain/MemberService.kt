@@ -27,4 +27,8 @@ class MemberService(
         val presenterIndex = Random.nextInt(members.size)
         return MemberResult(members[presenterIndex].id!!, members[presenterIndex].nickname)
     }
+
+    fun deleteMember(id: Long) {
+        memberRepository.deleteById(id)
+    }
 }

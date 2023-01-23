@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 
@@ -93,6 +94,26 @@ internal class MemberIntegrationTest(
                 }
             }
         }
+
+        given("call delete member API") {
+            addMember()
+            val id = getMemberId()
+
+            When("happy case") {
+                val result = mockMvc.delete("/members/${id}")
+
+                then("response 200 status code") {
+                    result.andExpect {
+                        status { isOk() }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getMemberId(): Long {
+        val members = memberRepository.findAll()
+        return members[0].id!!
     }
 
     private fun addMember(nickname: String = "hello") {

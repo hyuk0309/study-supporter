@@ -26,4 +26,10 @@ class MemberController(
 
     @GetMapping("/random/select")
     fun selectPresenter() = ResponseEntity.ok(memberService.selectPresenter())
+
+    @DeleteMapping("/{id}")
+    fun deleteMember(@PathVariable id: Long): ResponseEntity<Unit> {
+        memberService.deleteMember(id)
+        return ResponseEntity.ok().build()
+    }
 }
