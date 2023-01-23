@@ -12,12 +12,5 @@ Study를 진행하면서 필요성을 느낀 기능을 직접 개발하는 프�
 
 - Add Member
 - Get Members
-- Delete Member (WIP)
+- Delete Member
 - Choose Presenter
-
-
-
-
-### TO DO
-1. Design Home Page
-2. Develop Random Selector Feature
