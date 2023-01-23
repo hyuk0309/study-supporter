@@ -23,4 +23,7 @@ class MemberController(
         val members = memberService.findMembers()
         return ResponseEntity.ok(MembersResponse(members))
     }
+
+    @GetMapping("/random/select")
+    fun selectPresenter() = ResponseEntity.ok(memberService.selectPresenter())
 }

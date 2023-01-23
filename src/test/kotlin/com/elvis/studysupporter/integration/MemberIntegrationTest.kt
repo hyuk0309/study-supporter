@@ -5,6 +5,7 @@ import com.elvis.studysupporter.infrastructure.MemberRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.kotest.core.spec.style.BehaviorSpec
 import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.notNullValue
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
@@ -72,12 +73,32 @@ internal class MemberIntegrationTest(
                 }
             }
         }
+
+        given("call select presenter API") {
+            addMember("testNickname1")
+            addMember("testNickname2")
+
+            When("happy case") {
+                val result = mockMvc.get("/members/random/select") {
+                    accept = MediaType.APPLICATION_JSON
+                }
+
+                then("response 200 status code and presenter") {
+                    result.andExpect {
+                        status { isOk() }
+                        jsonPath("$.nickname", notNullValue())
+                    }.andDo {
+                        print()
+                    }
+                }
+            }
+        }
     }
 
-    private fun addMember() {
+    private fun addMember(nickname: String = "hello") {
         mockMvc.post("/members") {
             contentType = MediaType.APPLICATION_JSON
-            content = mapper.writeValueAsString(AddMemberRequest("hi"))
+            content = mapper.writeValueAsString(AddMemberRequest(nickname))
         }.andExpect {
             status { isOk() }
         }
