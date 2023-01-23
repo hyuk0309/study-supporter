@@ -38,13 +38,13 @@
         </table>
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-success" type="button">Select Presenter</button>
+        <button id="selectPresenterBtn" class="btn btn-success" type="button">Select Presenter</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">Add Member
         </button>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Add Member Modal Form -->
 <div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -69,6 +69,32 @@
         </div>
     </div>
 </div>
+
+<!--Presenter Show Modal -->
+<div class="modal fade" id="presenterShowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Presenter!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped" id="presenter">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nickname</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
@@ -114,6 +140,32 @@
             }
         });
     });
+</script>
+<script>
+    $('#selectPresenterBtn').click(function (e) {
+        // e.preventDefault();
+
+        $.ajax({
+            url: "/members/random/select",
+            type: "GET",
+            success: function (response) {
+                // Ajax call completed successfully
+                console.log(response);
+
+                $('#presenter tr').not(':first').remove();
+                var html = '<tr><td>' + response.id +
+                    '</td><td>' + response.nickname + '</td></tr>';
+                $('#presenter tr').first().after(html);
+
+                $('#presenterShowModal').modal('show')
+            },
+            error: function (response) {
+                // Some error in ajax call
+                console.log(response);
+                alert("some Error");
+            }
+        });
+    })
 </script>
 </body>
 </html>
