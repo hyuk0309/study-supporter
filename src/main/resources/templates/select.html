@@ -31,7 +31,7 @@
                 <th scope="row" th:text="${member.id}">1</th>
                 <td th:text="${member.nickname}">Mark</td>
                 <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
+                    <button type="button" class="btn btn-danger delete" th:data-id="${member.id}">Remove</button>
                 </td>
             </tr>
             </tbody>
@@ -76,7 +76,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Presenter!</h5>
+                <h5 class="modal-title">Presenter!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -143,8 +143,6 @@
 </script>
 <script>
     $('#selectPresenterBtn').click(function (e) {
-        // e.preventDefault();
-
         $.ajax({
             url: "/members/random/select",
             type: "GET",
@@ -165,6 +163,26 @@
                 alert("some Error");
             }
         });
+    })
+</script>
+<script>
+    $('.delete').click(function (e) {
+
+        const id = e.target.getAttribute("data-id");
+        console.log("deleted member id: " + id)
+
+        $.ajax({
+            url: "/members/" + id,
+            type: "DELETE",
+            success: function(response) {
+                alert("delete success");
+                location.reload();
+            },
+            error: function(response) {
+                console.log(response);
+                alert("delete error");
+            }
+        })
     })
 </script>
 </body>

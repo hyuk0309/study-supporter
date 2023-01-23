@@ -28,6 +28,7 @@ class MemberService(
         return MemberResult(members[presenterIndex].id!!, members[presenterIndex].nickname)
     }
 
+    @Transactional(readOnly = false)
     fun deleteMember(id: Long) {
         memberRepository.deleteById(id)
     }
