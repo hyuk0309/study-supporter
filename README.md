@@ -1,5 +1,6 @@
 
 
+
 # Study Supporter
 
 ## Intro
@@ -13,11 +14,11 @@ Study를 진행하면서 필요성을 느낀 기능을 직접 개발하는 프�
 - Get Members
 - Edit Member Nickname (WIP) 
 - Delete Member (WIP)
-- Choose Presenter (WIP)
+- Choose Presenter
 
 
 
 
 ### TO DO
 1. Design Home Page
-2. Develop Random Selector Feature (WIP) 
+2. Develop Random Selector Feature
