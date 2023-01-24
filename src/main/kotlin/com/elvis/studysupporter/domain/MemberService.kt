@@ -14,12 +14,7 @@ class MemberService(
     @Transactional(readOnly = false)
     fun createMember(nickname: String) = memberRepository.save(Member(nickname))
 
-    fun findMembers(): List<MemberResult> {
-        val members = memberRepository.findAll()
-
-        return members
-            .map { member -> MemberResult(member.id!!, member.nickname) }
-    }
+    fun findMembers() = memberRepository.findAll().map { member -> MemberResult(member.id!!, member.nickname) }
 
     fun selectPresenter(): MemberResult {
         val members = memberRepository.findAll()
@@ -29,7 +24,5 @@ class MemberService(
     }
 
     @Transactional(readOnly = false)
-    fun deleteMember(id: Long) {
-        memberRepository.deleteById(id)
-    }
+    fun deleteMember(id: Long) = memberRepository.deleteById(id)
 }

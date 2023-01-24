@@ -19,10 +19,7 @@ class MemberController(
     }
 
     @GetMapping
-    fun findMembers(): ResponseEntity<MembersResponse<MemberResult>> {
-        val members = memberService.findMembers()
-        return ResponseEntity.ok(MembersResponse(members))
-    }
+    fun findMembers() = ResponseEntity.ok(MembersResponse(memberService.findMembers()))
 
     @GetMapping("/random/select")
     fun selectPresenter() = ResponseEntity.ok(memberService.selectPresenter())
