@@ -4,6 +4,7 @@ import com.elvis.studysupporter.domain.dto.MemberResult
 import com.elvis.studysupporter.infrastructure.MemberRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 import kotlin.random.Random
 
 @Transactional(readOnly = true)
@@ -19,7 +20,7 @@ class MemberService(
     fun selectPresenter(): MemberResult {
         val members = memberRepository.findAll()
 
-        val presenterIndex = Random.nextInt(members.size)
+        val presenterIndex = Random(LocalDateTime.now().nano).nextInt(members.size)
         return MemberResult(members[presenterIndex].id!!, members[presenterIndex].nickname)
     }
 
